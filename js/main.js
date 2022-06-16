@@ -30,8 +30,6 @@ const MESSAGES = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
-const MESSAGE_COUNT = 2;
-
 function getRandomNumber(min, max) {
   if (min > max) {
     const iTemp = max;
@@ -78,5 +76,3 @@ const createPicture = () => ({
 });
 
 const similarPictures = Array.from({ length: PICTURE_COUNT}, createPicture);
-
-console.log(similarPictures);

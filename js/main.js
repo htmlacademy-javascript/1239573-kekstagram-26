@@ -16,7 +16,7 @@ const NAMES = [
 const PICTURE_COUNT = 25;
 const COMMENT_COUNT = 5;
 
-const LikesCount = {
+const likesCount = {
   min: 15,
   max: 200
 };
@@ -30,7 +30,12 @@ const MESSAGES = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
-function getRandomNumber(min, max) {
+const messagesCount = {
+  min: 1,
+  max: 2
+};
+
+const getRandomNumber = (min, max) => {
   if (min > max) {
     const iTemp = max;
     max = min;
@@ -38,41 +43,50 @@ function getRandomNumber(min, max) {
   }
   const result = Math.abs(min) + Math.random() * (Math.abs(max) + 1 - Math.abs(min));
   return Math.floor(result);
-}
+};
 
-function checkLenght(checkString, maxlegth) {
-  return checkString.length < maxlegth;
-}
+const checkLenght = (checkString, maxlegth) => checkString.length < maxlegth;
 checkLenght('Проверяемая строка', 20);
 
 const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 
-let indexID = 0;
-let indexChildID = 0;
-function createId() {
-  indexID = indexID + 1;
-  return indexID;
-}
+const concatMessage = (count) => {
+  const fullMessage = [];
+  for (let i = 1; i <= count; i++) {
+    fullMessage.push (getRandomArrayElement(MESSAGES));
+  }
+  return fullMessage.join(' ');
+};
 
-function createChildId() {
-  indexChildID = indexChildID + 1;
-  return indexChildID;
-}
-
-const createComment = () => ({
-  id: createChildId(),
+const createComment = (id) => ({
+  id,
   avatar: `img/avatar-${getRandomNumber(1, 6)}.svg`,
-  message: getRandomArrayElement(MESSAGES) + ' ' + getRandomArrayElement(MESSAGES),
+  message: concatMessage(getRandomNumber(messagesCount.min, messagesCount.max)),
   name: getRandomArrayElement(NAMES),
 });
 
+const createComments = (count) => {
+  const comments = [];
+  for (let i = 1; i <= count; i++) {
+    comments.push(createComment(i));
+  }
+  return comments;
+};
 
-const createPicture = () => ({
-  id: createId(),
-  url: `photos/${indexID}.jpg`,
-  description: `Описание фотографии ${indexID}`,
-  likes: getRandomNumber (LikesCount.min, LikesCount.max),
-  comments: Array.from({ length: getRandomNumber(1, COMMENT_COUNT)}, createComment),
+const createPicture = (id) => ({
+  id,
+  url: `photos/${id}.jpg`,
+  description: `Описание фотографии ${id}`,
+  likes: getRandomNumber (likesCount.min, likesCount.max),
+  comments: createComments(getRandomNumber(1, COMMENT_COUNT)),
 });
 
-const similarPictures = Array.from({ length: PICTURE_COUNT}, createPicture);
+const createPictures = (count) => {
+  const pictures = [];
+  for (let i = 1; i <= count; i++) {
+    pictures.push(createPicture(i));
+  }
+  return pictures;
+};
+
+console.log(createPictures(PICTURE_COUNT));

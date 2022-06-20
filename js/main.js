@@ -89,4 +89,4 @@ const createPictures = (count) => {
   return pictures;
 };
 
-console.log(createPictures(PICTURE_COUNT));
+// console.log(createPictures(PICTURE_COUNT));

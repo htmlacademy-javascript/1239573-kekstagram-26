@@ -1,17 +1,25 @@
 import {createPictures, PICTURE_COUNT} from './data.js';
+import {showFullPhoto } from './fullphoto.js';
 
 const photosArray = createPictures(PICTURE_COUNT);
 
-const pictureTemplate = document
+const pictureCopy = document
   .querySelector('#picture')
   .content.querySelector('.picture');
 const picturesList = document.querySelector('.pictures');
 
-const createPhoto = ({ url, comments, likes }) => {
-  const photoPreview = pictureTemplate.cloneNode(true);
-  photoPreview.querySelector('.picture__img').src = url;
-  photoPreview.querySelector('.picture__comments').textContent = comments.length;
-  photoPreview.querySelector('.picture__likes').textContent = likes;
+const createPhoto = (photo) => {
+  const photoPreview = pictureCopy.cloneNode(true);
+  photoPreview.querySelector('.picture__img').src = photo.url;
+  photoPreview.querySelector('.picture__comments').textContent = photo.comments.length;
+  photoPreview.querySelector('.picture__likes').textContent = photo.likes;
+
+  // добавляем прослушиватель на клик
+  photoPreview.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    showFullPhoto(photo);
+  });
+
   return photoPreview;
 };
 

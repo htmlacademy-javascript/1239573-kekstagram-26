@@ -38,6 +38,11 @@ const messagesCount = {
   MAX: 2
 };
 
+const avatarCount = {
+  MIN: 1,
+  MAX: 6
+};
+
 const concatMessage = (count) => {
   const fullMessage = [];
   for (let i = 1; i <= count; i++) {
@@ -48,7 +53,7 @@ const concatMessage = (count) => {
 
 const createComment = (id) => ({
   id,
-  avatar: `img/avatar-${getRandomNumber(1, 6)}.svg`,
+  avatar: `img/avatar-${getRandomNumber(avatarCount.MIN, avatarCount.MAX)}.svg`,
   message: concatMessage(getRandomNumber(messagesCount.MIN, messagesCount.MAX)),
   name: getRandomArrayElement(NAMES),
 });

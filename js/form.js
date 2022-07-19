@@ -9,20 +9,20 @@ const scaleValue = uploadModal.querySelector('.scale__control--value');
 const uploadPreview = uploadModal.querySelector('.img-upload__preview > img');
 const uploadModalClose = document.querySelector('#upload-cancel');
 
-// Сбрасываем настройки
+// Сброс настроек
 const resetSettings = () => {
   scaleValue.value = '100%';
   uploadPreview.style = 'transform: scale(1.00)';
 };
 
-// Открываем окно
+// Открытие окна
 uploadFile.addEventListener('change',  () => {
   body.classList.add('modal-open');
   uploadModal.classList.remove('hidden');
   resetSettings();
 });
 
-// Закрываем окно
+// Закрытие окна
 const closeEditor  = () => {
   uploadFile.value = '';
   body.classList.remove('modal-open');

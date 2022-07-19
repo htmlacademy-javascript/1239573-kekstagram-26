@@ -15,7 +15,7 @@ const NAMES = [
 ];
 
 const PICTURE_COUNT = 25;
-const COMMENT_COUNT = 5;
+const COMMENT_COUNT = 10;
 // защита от бесконечного цикла при выходе за пределы диапазона значений
 const COMMENT_COUNT_ID = PICTURE_COUNT*COMMENT_COUNT;
 

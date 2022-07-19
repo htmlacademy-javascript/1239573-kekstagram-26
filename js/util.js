@@ -13,4 +13,6 @@ checkLenght('Проверяемая строка', 20);
 
 const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 
-export {getRandomNumber, checkLenght, getRandomArrayElement};
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export {getRandomNumber, checkLenght, getRandomArrayElement, isEscapeKey};

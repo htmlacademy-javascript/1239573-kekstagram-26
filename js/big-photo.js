@@ -1,3 +1,5 @@
+import { isEscapeKey } from './util.js';
+
 const body = document.querySelector('body');
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureCancel = document.querySelector('.big-picture__cancel');
@@ -19,7 +21,7 @@ const bigPictureCloseClick = (evt) => {
 // обработка закрытия окна по Esc
 const bigPictureEsc =(evt) => {
   evt.preventDefault();
-  if(evt.key === 'Escape') {
+  if(isEscapeKey(evt)) {
     bigPicture.classList.add('hidden');
     body.classList.remove('modal-open');
     bigPictureCancel.removeEventListener('click', bigPictureCloseClick);

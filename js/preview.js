@@ -1,5 +1,5 @@
 import {createPictures, PICTURE_COUNT} from './data.js';
-import {showFullPhoto } from './big-photo.js';
+import {showFullPhoto } from './big-picture.js';
 
 const photosArray = createPictures(PICTURE_COUNT);
 

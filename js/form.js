@@ -1,4 +1,5 @@
 import { isEscapeKey } from './util.js';
+import { setDefaultLevel } from './effects.js';
 
 const body = document.querySelector('body');
 const uploadFile = document.querySelector('#upload-file');
@@ -13,6 +14,7 @@ const uploadModalClose = document.querySelector('#upload-cancel');
 const resetSettings = () => {
   scaleValue.value = '100%';
   uploadPreview.style = 'transform: scale(1.00)';
+  setDefaultLevel();
 };
 
 // Открытие окна
@@ -27,6 +29,7 @@ const closeEditor  = () => {
   uploadFile.value = '';
   body.classList.remove('modal-open');
   uploadModal.classList.add('hidden');
+  setDefaultLevel();
 };
 
 // Обработчик на крестик

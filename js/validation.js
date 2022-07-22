@@ -13,10 +13,10 @@ const pristine = new Pristine(uploadForm, {
   errorTextClass: 'form__error'
 }, false);
 
-const maxCommentlength = 140;
-const maxHashtags = 5;
+const commentlength = 140;
+const hashtagsCount = 5;
 
-const validateComment = (value) => value.length <= maxCommentlength;
+const validateComment = (value) => value.length <= commentlength;
 const preparedHashtags = (value) => value.trim().toLowerCase().split(' ');
 
 const isArrayInique = (arrayToCheck) => {
@@ -36,7 +36,7 @@ const isArrayInique = (arrayToCheck) => {
   return true;
 };
 
-pristine.addValidator(textHashtags, (hashtags) => preparedHashtags(hashtags).length <= maxHashtags,
+pristine.addValidator(textHashtags, (hashtags) => preparedHashtags(hashtags).length <= hashtagsCount,
   'Вы можете указать не более 5 хэштегов');
 
 pristine.addValidator(textHashtags, (hashtags) => hashtags === '' || preparedHashtags(hashtags).every((value) => /[^-_=+;:,.]$/m.test(value)),
